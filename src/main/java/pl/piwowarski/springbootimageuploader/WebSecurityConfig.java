@@ -19,6 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
             auth.inMemoryAuthentication().withUser(
                     new User("Jan",passwordEncoder().encode("Jan123"), Collections.singleton(new SimpleGrantedAuthority("user"))));
+
+            auth.userDetailsService()
     }
 
     @Override
