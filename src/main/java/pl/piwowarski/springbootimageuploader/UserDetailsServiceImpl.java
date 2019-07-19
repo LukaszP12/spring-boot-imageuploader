@@ -15,12 +15,10 @@ import pl.piwowarski.springbootimageuploader.repo.AppUserRepo;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private AppUserRepo appUserRepo;
-    private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserDetailsServiceImpl(AppUserRepo appUserRepo,PasswordEncoder passwordEncoder) {
+    public UserDetailsServiceImpl(AppUserRepo appUserRepo) {
         this.appUserRepo = appUserRepo;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -28,10 +26,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return appUserRepo.findByUserName(s);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void get() {
-        AppUser appUser = new AppUser("Jan",passwordEncoder.encode("Nowak"),"USER");
-        appUserRepo.save(appUser);
-    }
+
 
 }
