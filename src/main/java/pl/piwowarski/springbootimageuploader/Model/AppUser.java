@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-public class AppUser extends UserDetails {
+public class AppUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +48,7 @@ public class AppUser extends UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(role);
+        return Collections.singleton(new SimpleGrantedAuthority(role));
     }
 
     @Override
